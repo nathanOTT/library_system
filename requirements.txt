@@ -1,0 +1,13 @@
+pandas
+scikit-learn
+scikit-surprise
+SqlAlchemy
+flask
+flask-cors
+python-dotenv
+gunicorn
+waitress
+numpy<2
+pydantic
+Pillow
+matplotlib
