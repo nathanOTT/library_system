@@ -1,22 +1,27 @@
-### library_system
+#!/bin/bash
 
-psql -U your_rolename -d your_database -f /Users/timeless/library_dataset/sql-files/books.sql
+# Define database name and user
+DB_NAME="library_system"
+DB_USER="postgres"
 
-psql -U your_username -d your_database -f /Users/timeless/library_dataset/sql-files/users.sql
-psql -U your_username -d your_database -f /Users/timeless/library_dataset/sql-files/books.sql
-psql -U your_username -d your_database -f /Users/timeless/library_dataset/sql-files/ratings.sql
+# Define paths to SQL files and processed CSV files
+SQL_DIR="/Users/nathanielani/library_dataset/sql-files"
+PROCESSED_DIR="/Users/nathanielani/library_dataset/processed"
 
-COPY users FROM '/path/path/path/processed/clean_users.csv' DELIMITER ',' CSV HEADER;
-COPY books FROM '/path/path/path/processed/processed/clean_books.csv' DELIMITER ',' CSV HEADER;
-COPY ratings FROM '/path/path/path/processed/clean_ratings.csv' DELIMITER ',' CSV HEADER;
+# Run SQL schema files to create tables
+psql -U $DB_USER -d $DB_NAME -f "$SQL_DIR/users.sql"
+psql -U $DB_USER -d $DB_NAME -f "$SQL_DIR/books.sql"
+psql -U $DB_USER -d $DB_NAME -f "$SQL_DIR/ratings.sql"
 
-SELECT COUNT(*) FROM books;
-SELECT COUNT(*) FROM users;
-SELECT COUNT(*) FROM ratings;
+# Load data from CSV files into the database
+psql -U $DB_USER -d $DB_NAME -c "\COPY users(user_id, location, age) FROM '$PROCESSED_DIR/clean_users.csv' DELIMITER ',' CSV HEADER;"
+psql -U $DB_USER -d $DB_NAME -c "\COPY books(book_id, title, author, year_published) FROM '$PROCESSED_DIR/clean_books.csv' DELIMITER ',' CSV HEADER;"
+psql -U $DB_USER -d $DB_NAME -c "\COPY ratings(user_id, book_id, rating) FROM '$PROCESSED_DIR/clean_ratings.csv' DELIMITER ',' CSV HEADER;"
 
+# Verify if data is loaded correctly
+psql -U $DB_USER -d $DB_NAME -c "SELECT COUNT(*) FROM users;"
+psql -U $DB_USER -d $DB_NAME -c "SELECT COUNT(*) FROM books;"
+psql -U $DB_USER -d $DB_NAME -c "SELECT COUNT(*) FROM ratings;"
+
+# Run Drizzle Kit for database migration (if needed)
 npx drizzle-kit generate
-
-
-COPY users FROM '/path/path/path/processed/clean_users.csv' DELIMITER ',' CSV HEADER;
-COPY books FROM '/path/path/path/processed/processed/clean_books.csv' DELIMITER ',' CSV HEADER;
-COPY ratings FROM '/path/path/path/processed/clean_ratings.csv' DELIMITER ',' CSV HEADER;
