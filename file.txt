@@ -1,0 +1,18 @@
+Steps to get project to start.
+
+1. Download dataset from kaggle using the python script below:
+
+import kagglehub
+
+# Download latest version
+path = kagglehub.dataset_download("justsahil/movielens-32m")
+
+print("Path to dataset files:", path)
+
+2. use the mv command -- mv filePath( This would be where the above command output the dataset) destinationPath(this would be where you want to move the datatset)
+
+full command example.  mv originalFilePath(/Users/timeless/library_dataset)    destinationPath(/Users/timeless/library_dataset)
+
+White hat attackers aim to discover security weaknesses so that they can be improved.
+Black hat attackers take advantage of any vulnerabilities for illegal personal, financial or political gain.
+Gray hat attackers are somewhere in between. While they may not have malicious intentions, they want to get something for their discovery.

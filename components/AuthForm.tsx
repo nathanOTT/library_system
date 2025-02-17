@@ -107,7 +107,7 @@ const AuthForm = <T extends FieldValues>({
                         }
                         autoComplete="on"
                         {...field}
-                        className="form-input"
+                        className="book-form_input"
                         value={field.value}
                       />
                     )}

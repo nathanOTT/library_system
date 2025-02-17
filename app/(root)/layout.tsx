@@ -2,6 +2,9 @@ import React, { ReactNode } from "react";
 import Header from "@/components/Header";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import drizzledb from "@/database/drizzle";
+import { registration } from "@/database/schema";
+import { eq } from "drizzle-orm";
 
 const layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();

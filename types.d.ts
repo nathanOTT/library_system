@@ -17,3 +17,12 @@ interface AuthCredentials {
   password: string;
   universityCard: string;
 }
+
+interface AllUsersParams {
+  id: string;
+  fullName: string;
+  username: string;
+  email: string;
+  role: "USER" | "ADMIN" | "SUPERADMIN";
+  createdAt: Date;
+}
