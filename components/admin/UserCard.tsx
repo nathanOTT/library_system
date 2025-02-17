@@ -8,7 +8,7 @@ const roles = ["USER", "ADMIN", "SUPERADMIN"]; // Available roles
 const UserCard = ({
   id,
   fullName,
-  username,
+  universityId,
   email,
   role,
   createdAt,
@@ -42,7 +42,7 @@ const UserCard = ({
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4">
+    <div className="bg-white border-b-gray-600 shadow-lg rounded-lg p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <img
@@ -52,7 +52,9 @@ const UserCard = ({
           />
           <div className="ml-2">
             <p className="text-lg font-semibold text-gray-800">{fullName}</p>
-            <p className="text-sm font-semibold text-gray-600">@{username}</p>
+            <p className="text-sm font-semibold text-gray-600">
+              Library ID: {universityId}
+            </p>
           </div>
         </div>
         <select

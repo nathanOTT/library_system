@@ -21,7 +21,7 @@ interface AuthCredentials {
 interface AllUsersParams {
   id: string;
   fullName: string;
-  username: string;
+  universityId: string;
   email: string;
   role: "USER" | "ADMIN" | "SUPERADMIN";
   createdAt: Date;

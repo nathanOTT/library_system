@@ -6,7 +6,7 @@ import { registration } from "@/database/schema";
 
 const Home = async () => {
   const loggoedIn = await drizzleDb.select().from(registration);
-  console.log(JSON.stringify(loggoedIn, null, 2));
+  if (!loggoedIn) return null;
   return (
     <>
       <BookOverview />

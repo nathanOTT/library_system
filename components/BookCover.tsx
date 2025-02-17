@@ -35,8 +35,6 @@ const BookCover = ({
   if (error) return <p>Error: {error}</p>;
   if (!book || !book.image_url_l) return <p>No book cover found</p>;
 
-  console.log("BookCover -> book", book.image_url_l);
-
   return (
     <motion.div
       className={cn(
